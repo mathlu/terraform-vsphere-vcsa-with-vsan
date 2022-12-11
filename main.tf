@@ -18,7 +18,6 @@ locals {
     esxiusername       = var.vcbuild_esxiusername
     esxipassword       = var.vcbuild_esxipassword
     deployment_network = var.vcbuild_deployment_network
-    datastore          = var.vcbuild_datastore
     thin_disk_mode     = var.vcbuild_thin_disk_mode
     deployment_option  = var.vcbuild_deployment_option
     vchostname         = var.vcbuild_vchostname
@@ -35,14 +34,18 @@ locals {
     ipprefix           = var.vcbuild_ipprefix
     gateway            = var.vcbuild_gateway
     ceip_enabled       = var.vcbuild_ceip_enabled
+    datacenter         = var.vcbuild_datacenter
+    cluster            = var.vcbuild_cluster
+    vsan_cache_disk    = var.vcbuild_cache_disk
+    vsan_capacity_disk = var.vcbuild_capacity_disk
   })
 }
 resource "local_file" "vcbuild_output" {
-  filename = "/home/runner/vctemplate.json"
+  filename = "/home/runner/vctemplate-vsan.json"
   content  = local.vctemplate_out
 }
 resource "null_resource" "vc" {
   provisioner "local-exec" {
-    command = "/home/runner/vcenter/vcsa-cli-installer/lin64/vcsa-deploy install --accept-eula --acknowledge-ceip --no-ssl-certificate-verification --verbose /home/runner/vctemplate.json"
+    command = "/home/runner/vcenter/vcsa-cli-installer/lin64/vcsa-deploy install --accept-eula --acknowledge-ceip --no-ssl-certificate-verification --verbose /home/runner/vctemplate-vsan.json"
   }
 }

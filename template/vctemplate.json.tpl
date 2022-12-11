@@ -7,7 +7,21 @@
             "username": "${esxiusername}",
             "password": "${esxipassword}",
             "deployment_network": "${deployment_network}",
-            "datastore": "${datastore}"
+            "VCSA_cluster": {
+                "datacenter": "${datacenter}",
+                "cluster": "${cluster}",
+                "compression_only": false,
+                "deduplication_and_compression": true,
+                "disks_for_vsan": {
+                    "cache_disk": [
+                        "${vsan_cache_disk}"
+                    ],
+                    "capacity_disk": [
+                        "${vsan_capacity_disk}"
+                    ]
+                },
+                "enable_vlcm": true
+            }
         },
         "appliance": {
             "__comments": [

@@ -48,10 +48,6 @@ variable "vcbuild_network_mode" {
   description = "static or dhcp"
 }
 
-variable "vcbuild_datastore" {
-  description = "Datastore to deploy VCSA"
-}
-
 variable "vcbuild_vchostname" {
   description = "vCenter host name"
 }
@@ -103,4 +99,22 @@ variable "vcbuild_vcfqdn" {
 variable "vcbuild_ceip_enabled" {
   description = "Join VMware Customer Experience Program? 'true' or 'false' "
   default     = false
+}
+
+variable "vcbuild_datacenter" {
+  description = "Datacenter to create for vSAN cluster"
+  default = "vSAN Datacenter"
+}
+
+variable "vcbuild_cluster" {
+  description = "Cluster to create for vSAN"
+  default = "vSAN Cluster"
+}
+
+variable "vcbuild_cache_disk" {
+  description = "Cache disk UUID"
+}
+
+variable "vcbuild_capacity_disk" {
+  description = "Capacity disk UUID"
 }
